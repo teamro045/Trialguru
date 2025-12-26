@@ -47,44 +47,31 @@ html, body {
     inset: 0;
     margin: auto;
     text-align: center;
-    height: 100px;
-    line-height: 100px;
+    height: 40px;       /* smaller height */
+    line-height: 40px;
 }
 
 /* GOLDEN NEON TEXT */
 .loading-text span {
     display: inline-block;
-    margin: 0 4px;
+    margin: 0 1px;       /* smaller spacing */
     color: #ffd700;
-    font-size: 32px;
-    text-shadow:
-        0 0 5px #ffd700,
-        0 0 10px #ffcc33,
-        0 0 20px #ffb700,
-        0 0 40px #ffaa00;
+    font-size: 14px;     /* smaller font */
+    text-shadow: 0 0 4px #ffd700;  /* simple glow */
 }
 
 /* BLUR WAVE ANIMATION */
 .loading-text span:nth-child(1) { animation: blur-text 1.5s 0s infinite alternate; }
-.loading-text span:nth-child(2) { animation: blur-text 1.5s 0.2s infinite alternate; }
-.loading-text span:nth-child(3) { animation: blur-text 1.5s 0.4s infinite alternate; }
-.loading-text span:nth-child(4) { animation: blur-text 1.5s 0.6s infinite alternate; }
-.loading-text span:nth-child(5) { animation: blur-text 1.5s 0.8s infinite alternate; }
-.loading-text span:nth-child(6) { animation: blur-text 1.5s 1s infinite alternate; }
-.loading-text span:nth-child(7) { animation: blur-text 1.5s 1.2s infinite alternate; }
-.loading-text span:nth-child(8) { animation: blur-text 1.5s 1.4s infinite alternate; }
-.loading-text span:nth-child(9) { animation: blur-text 1.5s 1.6s infinite alternate; }
-.loading-text span:nth-child(10){ animation: blur-text 1.5s 1.8s infinite alternate; }
-.loading-text span:nth-child(11){ animation: blur-text 1.5s 2s infinite alternate; }
-.loading-text span:nth-child(12){ animation: blur-text 1.5s 2.2s infinite alternate; }
-.loading-text span:nth-child(13){ animation: blur-text 1.5s 2.4s infinite alternate; }
-.loading-text span:nth-child(14){ animation: blur-text 1.5s 2.6s infinite alternate; }
-.loading-text span:nth-child(15){ animation: blur-text 1.5s 2.8s infinite alternate; }
-.loading-text span:nth-child(16){ animation: blur-text 1.5s 3s infinite alternate; }
-.loading-text span:nth-child(17){ animation: blur-text 1.5s 3.2s infinite alternate; }
-.loading-text span:nth-child(18){ animation: blur-text 1.5s 3.4s infinite alternate; }
-.loading-text span:nth-child(19){ animation: blur-text 1.5s 3.6s infinite alternate; }
-.loading-text span:nth-child(20){ animation: blur-text 1.5s 3.8s infinite alternate; }
+.loading-text span:nth-child(2) { animation: blur-text 1.5s 0.1s infinite alternate; }
+.loading-text span:nth-child(3) { animation: blur-text 1.5s 0.2s infinite alternate; }
+.loading-text span:nth-child(4) { animation: blur-text 1.5s 0.3s infinite alternate; }
+.loading-text span:nth-child(5) { animation: blur-text 1.5s 0.4s infinite alternate; }
+.loading-text span:nth-child(6) { animation: blur-text 1.5s 0.5s infinite alternate; }
+loading-text span:nth-child(7) { animation: blur-text 1.5s 0.6s infinite alternate; }
+.loading-text span:nth-child(8) { animation: blur-text 1.5s 0.7s infinite alternate; }
+.loading-text span:nth-child(9) { animation: blur-text 1.5s 0.8s infinite alternate; }
+.loading-text span:nth-child(10){ animation: blur-text 1.5s 0.9s infinite alternate; }
+/* add more if needed */
 
 @keyframes blur-text {
     0% {
@@ -92,7 +79,7 @@ html, body {
         opacity: 1;
     }
     100% {
-        filter: blur(3px);
+        filter: blur(2px);
         opacity: 0.8;
     }
 }
@@ -112,8 +99,8 @@ html, body {
 </div>
 
 <!-- VIDEO PLAYER -->
-<video id="player" controls autoplay playsinline crossorigin>
-    <source src="https://amg01269-amg01269c1-sportstribal-emea-5204.playouts.now.amagi.tv/ts-eu-w1-n2/playlist/amg01269-willowtvfast-willowplus-sportstribalemea/playlist.m3"
+<video id="player" controls autoplay muted playsinline crossorigin>
+    <source src="https://amg01269-amg01269c1-sportstribal-emea-5204.playouts.now.amagi.tv/ts-eu-w1-n2/playlist/amg01269-willowtvfast-willowplus-sportstribalemea/playlist.m3u8"
             type="application/vnd.apple.mpegurl">
 </video>
 
@@ -121,7 +108,7 @@ html, body {
 /* HIDE LOADER */
 setTimeout(() => {
     document.getElementById("loading").style.display = "none";
-}, 3000);
+}, 2000);
 
 /* PLAYER SETUP */
 document.addEventListener("DOMContentLoaded", () => {
@@ -148,6 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
             };
             new Plyr(video, options);
         });
+
+        hls.on(Hls.Events.ERROR, function(event, data) {
+            console.error("HLS ERROR:", data);
+        });
+
         window.hls = hls;
     } else {
         new Plyr(video, options);
@@ -157,3 +149,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
